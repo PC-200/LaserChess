@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8054382741219977930
+--- !u!1001 &8792951054633451709
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,92 +10,36 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 150559726207846057, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
       propertyPath: m_Name
-      value: Drone
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Hp
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Name
-      value: Drone
+      value: Commandunit
       objectReference: {fileID: 0}
     - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
       propertyPath: MaxHealth
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: AttackDamage
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
       propertyPath: Movement.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[0].Distance
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[1].Distance
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[2].Distance
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[3].Distance
-      value: 8
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
       propertyPath: Movement.Array.data[0].Distance
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[0].Direction.x
+      propertyPath: Movement.Array.data[1].Distance
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[0].Direction.z
+      propertyPath: Movement.Array.data[0].Direction.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[1].Direction.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[1].Direction.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[2].Direction.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[2].Direction.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[3].Direction.x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Attack.Array.data[3].Direction.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Movement.Array.data[0].Direction.z
+      propertyPath: Movement.Array.data[1].Direction.z
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 1347246903071367681, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 494190d138e54a44ca9a24cd758ef444, type: 2}
+      objectReference: {fileID: 2100000, guid: 78161d44121e3a64e8eb80e13382f67b, type: 2}
     - target: {fileID: 2050938505250803209, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
