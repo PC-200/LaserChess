@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2050938505250803209}
   - component: {fileID: 932112593941521056}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Piece
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9dae08f30485ea49bd546d8320db7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hp: 0
+  Movement: []
+  Attack: []
+  MaxHealth: 0
+  AttackDamage: 0
+  AoEDamage: 0
 --- !u!1 &8119136036534934407
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,7 +62,7 @@ GameObject:
   - component: {fileID: 1869724965615962281}
   - component: {fileID: 1347246903071367681}
   - component: {fileID: 1686673619207744444}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
