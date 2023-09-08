@@ -20,7 +20,7 @@ public class Game : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CurrentPlayer.Update();
+        CurrentPlayer.GameUpdate();
     }
 
     public void NextPlayer()

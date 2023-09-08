@@ -10,15 +10,17 @@ public class Player : MonoBehaviour
     private List<Piece> Pieces;
     private Tile currentTile;
     private Piece previousPiece;
+    private Board board;
 
 
     void Start()
     {
         Piece[] pieces = transform.GetComponentsInChildren<Piece>();
         Pieces = pieces.ToList();
+        board = FindObjectOfType<Board>();
     }
 
-    public void Update()
+    public void GameUpdate()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -34,7 +36,6 @@ public class Player : MonoBehaviour
 
             if (tile != null)
             {
-                Debug.Log(tile.Position);
                 tile.EnableHighlight(true);
                 currentTile = tile;
             }
@@ -48,13 +49,34 @@ public class Player : MonoBehaviour
                 Piece piece = hit.transform.GetComponentInParent<Piece>();
                 if (previousPiece != null)
                 {
-                    previousPiece.SelectedPieceDown(previousPiece);
+                    previousPiece.SelectedPieceDown();
+                    foreach (var tile in board.Tiles)
+                    {
+                        tile.EnableMovementMarker(false);
+                    }
                 }
                 if (piece != null)
                 {
-                    piece.SelectedPieceUp(piece);
+                    piece.SelectedPieceUp();
                     previousPiece = piece;
-                }  
+                    var movementTiles = board.GetMovementTiles(piece.Position, piece.Movement);
+                    foreach (var tile in movementTiles)
+                    {
+                        tile.EnableMovementMarker(true);
+                    }
+                }
+            }
+            else 
+            {
+                if (previousPiece != null)
+                {
+                    previousPiece.SelectedPieceDown();
+                    previousPiece = null;
+                    foreach (var tile in board.Tiles)
+                    {
+                        tile.EnableMovementMarker(false);
+                    }
+                }
             }
         }
         #endregion

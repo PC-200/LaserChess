@@ -33,8 +33,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
-      propertyPath: Movement.Array.data[1].Direction.z
+      propertyPath: Movement.Array.data[1].Direction.x
       value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 932112593941521056, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
+      propertyPath: Movement.Array.data[1].Direction.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1347246903071367681, guid: 7c7d5ef12bab05f47af7ab8a5e522c44, type: 3}
       propertyPath: m_Materials.Array.data[0]

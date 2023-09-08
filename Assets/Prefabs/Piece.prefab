@@ -50,6 +50,7 @@ MonoBehaviour:
   MaxHealth: 0
   AttackDamage: 0
   AoEDamage: 0
+  VisualObj: {fileID: 8119136036534934407}
 --- !u!1 &8119136036534934407
 GameObject:
   m_ObjectHideFlags: 0

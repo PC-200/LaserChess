@@ -4,23 +4,17 @@ using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public Vector2Int Position => new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.z));
+    public Vector2Int Position => transform.position.ToV2I();
     public GameObject HighlightObject;
+    public GameObject MovementMarkerObj;  
 
     public void EnableHighlight(bool enable)
     {
         HighlightObject.SetActive(enable);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void EnableMovementMarker(bool enable)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        MovementMarkerObj.SetActive(enable);
     }
 }

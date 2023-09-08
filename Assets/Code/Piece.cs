@@ -19,19 +19,18 @@ public class Piece : MonoBehaviour
     public int MaxHealth;
     public int AttackDamage;
     public bool AoEDamage;
+    public GameObject VisualObj;
+    public Vector2Int Position => transform.position.ToV2I();
 
-    public Vector3 Position => new Vector3(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.y), Mathf.RoundToInt(transform.position.z));
-
-    public void SelectedPieceUp(Piece pieceUp)
+    public void SelectedPieceUp()
     {
-        Vector3 newPosition = new Vector3(Position.x, Position.y + (float)0.5, Position.z); 
-        pieceUp.transform.position = newPosition;
+        Vector3 newPosition = new Vector3(0, 0.5f, 0);
+        VisualObj.transform.localPosition = newPosition;
     }
 
-    public void SelectedPieceDown(Piece pieceDown)
+    public void SelectedPieceDown()
     {
-        Vector3 newPosition = new Vector3(Position.x, Position.y, Position.z);
-        pieceDown.transform.position = newPosition;
+        VisualObj.transform.localPosition = Vector3.zero;
     }
 }
 
