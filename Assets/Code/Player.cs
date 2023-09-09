@@ -9,11 +9,11 @@ public class Player : MonoBehaviour
     public string Name;
     private List<Piece> Pieces;
     private Tile currentTile;
-    private Piece previousPiece;
+    private Piece currentPiece;
     private Board board;
 
 
-    void Start()
+    void Awake()
     {
         Piece[] pieces = transform.GetComponentsInChildren<Piece>();
         Pieces = pieces.ToList();
@@ -47,18 +47,18 @@ public class Player : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 50, LayerMask.GetMask("Pieces")))
             {
                 Piece piece = hit.transform.GetComponentInParent<Piece>();
-                if (previousPiece != null)
+                if (currentPiece != null)
                 {
-                    previousPiece.SelectedPieceDown();
+                    currentPiece.SelectedPieceDown();
                     foreach (var tile in board.Tiles)
                     {
                         tile.EnableMovementMarker(false);
                     }
                 }
-                if (piece != null)
+                if (piece != null && !piece.IsMoved && Pieces.Contains(piece))
                 {
                     piece.SelectedPieceUp();
-                    previousPiece = piece;
+                    currentPiece = piece;
                     var movementTiles = board.GetMovementTiles(piece.Position, piece.Movement);
                     foreach (var tile in movementTiles)
                     {
@@ -68,10 +68,15 @@ public class Player : MonoBehaviour
             }
             else 
             {
-                if (previousPiece != null)
+                if (currentPiece != null)
                 {
-                    previousPiece.SelectedPieceDown();
-                    previousPiece = null;
+                    if(currentTile != null && currentTile.IsMarkedForMovement)
+                    {
+                        currentPiece.MoveTo(currentTile.Position);
+                        
+                    }
+                    currentPiece.SelectedPieceDown();
+                    currentPiece = null;
                     foreach (var tile in board.Tiles)
                     {
                         tile.EnableMovementMarker(false);
@@ -84,6 +89,9 @@ public class Player : MonoBehaviour
 
     public void NewTurn()
 	{
-		Debug.Log($"New Turn {Name}");
+        foreach (var piece in Pieces)
+        { 
+            piece.IsMoved = false;   
+        }
 	}
 }

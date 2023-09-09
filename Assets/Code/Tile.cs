@@ -6,7 +6,8 @@ public class Tile : MonoBehaviour
 {
     public Vector2Int Position => transform.position.ToV2I();
     public GameObject HighlightObject;
-    public GameObject MovementMarkerObj;  
+    public GameObject MovementMarkerObj;
+    public bool IsMarkedForMovement => MovementMarkerObj.activeSelf;
 
     public void EnableHighlight(bool enable)
     {
@@ -17,4 +18,5 @@ public class Tile : MonoBehaviour
     {
         MovementMarkerObj.SetActive(enable);
     }
+
 }
