@@ -70,4 +70,23 @@ public class Board : MonoBehaviour
         }
         return null;
     }
+    public List<Piece> GetAttackPieces(Vector2Int startPos, List<MovementDirection> directions)
+    {
+        List<Piece> result = new List<Piece>();
+
+        foreach (var md in directions)
+        {
+            for (int i = 1; i <= md.Distance; i++)
+            {
+                Vector2Int newPos = startPos + md.Direction.ToV2I() * i;
+                var piece = GetPiece(newPos);
+                if (piece != null)
+                {
+                    result.Add(piece);
+                    break;
+                }
+            }
+        }
+        return result;
+    }
 }

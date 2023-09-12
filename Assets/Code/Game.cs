@@ -23,6 +23,10 @@ public class Game : MonoBehaviour
         CurrentPlayer.GameUpdate();
     }
 
+    public void CheckForGameOver()
+    { 
+        
+    }
     public void NextPlayer()
     {
         ++_currentPlayerIdx;

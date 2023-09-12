@@ -22,12 +22,21 @@ public class Piece : MonoBehaviour
     public bool AoEDamage;
     public GameObject VisualObj;
     public bool IsMoved;
+    public bool IsAttacked;
     public AnimationCurve MovementCurve;
     private bool moving;
     private Vector3 startPos, targetPos;
     private float movementStartTime;
+    public Player Player;
+    private int currentHealth;
 
+    
     public Vector2Int Position => transform.position.ToV2I();
+
+    public void Start()
+    {
+        currentHealth = MaxHealth;
+    }
 
     public void SelectedPieceUp()
     {
@@ -47,6 +56,17 @@ public class Piece : MonoBehaviour
         startPos = transform.position;
         targetPos = new Vector3(pos.x, 0, pos.y);
         movementStartTime = Time.time;
+    }
+    public void AttackPiece(Piece piece)
+    {
+        Debug.Log($"Current health is: { piece.currentHealth}, {AttackDamage}");
+        piece.currentHealth -= AttackDamage;
+        if (piece.currentHealth <= 0)
+        {
+            Destroy(piece.gameObject);
+        }
+        IsAttacked = true;
+        IsMoved = true;
     }
 
     public void Update()

@@ -2,21 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Runtime.CompilerServices;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
     public string Name;
-    private List<Piece> Pieces;
     private Tile currentTile;
     private Piece currentPiece;
     private Board board;
+    public bool IsAiPlayer;
+
 
 
     void Awake()
     {
         Piece[] pieces = transform.GetComponentsInChildren<Piece>();
-        Pieces = pieces.ToList();
+        foreach (Piece piece in pieces)
+        {
+            piece.Player = this;
+        }
         board = FindObjectOfType<Board>();
     }
 
@@ -24,6 +30,7 @@ public class Player : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+        bool currentTileMarkedForAttack = false;
         #region Tile
         if (currentTile != null)
         {
@@ -38,6 +45,7 @@ public class Player : MonoBehaviour
             {
                 tile.EnableHighlight(true);
                 currentTile = tile;
+                currentTileMarkedForAttack = true;
             }
         }
         #endregion
@@ -53,16 +61,39 @@ public class Player : MonoBehaviour
                     foreach (var tile in board.Tiles)
                     {
                         tile.EnableMovementMarker(false);
+                        tile.EnableAttackMarker(false);
                     }
                 }
-                if (piece != null && !piece.IsMoved && Pieces.Contains(piece))
-                {
-                    piece.SelectedPieceUp();
-                    currentPiece = piece;
-                    var movementTiles = board.GetMovementTiles(piece.Position, piece.Movement);
-                    foreach (var tile in movementTiles)
+                if (piece != null)
+                { 
+                    if (piece.Player == this)
                     {
-                        tile.EnableMovementMarker(true);
+                        piece.SelectedPieceUp();
+                        currentPiece = piece;
+                        if (!piece.IsMoved)
+                        {
+                            var movementTiles = board.GetMovementTiles(piece.Position, piece.Movement);
+                            foreach (var tile in movementTiles)
+                            {
+                                tile.EnableMovementMarker(true);
+                            }
+                        }
+                        if (!piece.IsAttacked) 
+                        {
+                            var attackPieces = board.GetAttackPieces(piece.Position, piece.Attack).Where(p => p.Player != this);
+                            foreach (var ap in attackPieces)
+                            {
+                                board.GetTile(ap.Position).EnableAttackMarker(true);
+                                
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (currentTileMarkedForAttack)
+                        {
+                            currentPiece.AttackPiece(board.GetPiece(currentTile.Position));
+                        }
                     }
                 }
             }
@@ -80,6 +111,7 @@ public class Player : MonoBehaviour
                     foreach (var tile in board.Tiles)
                     {
                         tile.EnableMovementMarker(false);
+                        tile.EnableAttackMarker(false);
                     }
                 }
             }
@@ -89,9 +121,10 @@ public class Player : MonoBehaviour
 
     public void NewTurn()
 	{
-        foreach (var piece in Pieces)
+        foreach (var piece in board.Pieces.Where(p => p.Player == this))
         { 
-            piece.IsMoved = false;   
+            piece.IsMoved = false;
+            piece.IsAttacked = false;
         }
 	}
 }
