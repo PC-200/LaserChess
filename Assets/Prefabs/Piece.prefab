@@ -88,6 +88,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   Player: {fileID: 0}
+  Projectile: {fileID: 4105345301147534895, guid: dad37b66515c88449b2cc8f72c4ca634, type: 3}
+  ShootPos: {fileID: 1696392942587886146}
 --- !u!1 &7260137442350632930
 GameObject:
   m_ObjectHideFlags: 0

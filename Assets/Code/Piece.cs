@@ -26,7 +26,9 @@ public class Piece : MonoBehaviour
     private float movementStartTime;
     public Player Player;
     private int currentHealth;
-
+    public GameObject Projectile;
+    public Transform ShootPos;
+    public string Name;
     
     public Vector2Int Position => transform.position.ToV2I();
 
@@ -60,10 +62,18 @@ public class Piece : MonoBehaviour
         piece.currentHealth -= AttackDamage;
         if (piece.currentHealth <= 0)
         {
-            Destroy(piece.gameObject);
+            DestroyImmediate(piece.gameObject);
+            FindObjectOfType<Board>().UpdatePiecesList();
         }
         IsAttacked = true;
         IsMoved = true;
+        Player.OnActionFinished();
+    }
+
+    public void ShootAt(Piece piece)
+    {
+        var projectile = Instantiate(Projectile).GetComponent<Projectile>();
+        projectile.MoveTo(ShootPos.position, piece.ShootPos.position, ()=> AttackPiece(piece));
     }
 
     public void Update()
@@ -73,9 +83,10 @@ public class Piece : MonoBehaviour
             float t = (Time.time - movementStartTime) / MovementTime;
             t = MovementCurve.Evaluate(t);
             transform.position = Vector3.Lerp(startPos, targetPos, t);
-            if (t > 1)
+            if (t >= 1)
             {
                 moving = false;
+                Player.OnActionFinished();
             }
         }
     }

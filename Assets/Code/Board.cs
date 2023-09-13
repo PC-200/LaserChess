@@ -18,9 +18,7 @@ public class Board : MonoBehaviour
         var tiles = GetComponentsInChildren<Tile>();
         Tiles = tiles.ToList();
         //We want to create a list with all onboard pieces. The only way that works is to add them manualy. :)
-        var game = FindObjectOfType<Game>();
-        var pieces = game.GetComponentsInChildren<Piece>();
-        Pieces = pieces.ToList();
+        UpdatePiecesList();
     }
 
     public List<Tile> GetMovementTiles(Vector2Int startPos, List<MovementDirection> directions)
@@ -88,5 +86,12 @@ public class Board : MonoBehaviour
             }
         }
         return result;
+    }
+
+    public void UpdatePiecesList()
+    {
+        var game = FindObjectOfType<Game>();
+        var pieces = game.GetComponentsInChildren<Piece>();
+        Pieces = pieces.ToList();
     }
 }

@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     private Piece currentPiece;
     private Board board;
     public bool IsAiPlayer;
-
+    
 
 
     void Awake()
@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
             {
                 tile.EnableHighlight(true);
                 currentTile = tile;
-                currentTileMarkedForAttack = true;
+                currentTileMarkedForAttack = tile.IsMarkedForAttack;
             }
         }
         #endregion
@@ -84,7 +84,6 @@ public class Player : MonoBehaviour
                             foreach (var ap in attackPieces)
                             {
                                 board.GetTile(ap.Position).EnableAttackMarker(true);
-                                
                             }
                         }
                     }
@@ -92,8 +91,21 @@ public class Player : MonoBehaviour
                     {
                         if (currentTileMarkedForAttack)
                         {
-                            currentPiece.AttackPiece(board.GetPiece(currentTile.Position));
+                            if (currentPiece.AoEDamage)
+                            {
+                                var attackPieces = board.GetAttackPieces(currentPiece.Position, currentPiece.Attack).Where(p => p.Player != this);
+                                foreach (var ap in attackPieces)
+                                {
+                                    currentPiece.ShootAt(board.GetPiece(ap.Position));
+                                }
+                            }
+                            else
+                            {
+                                currentPiece.ShootAt(board.GetPiece(currentTile.Position));
+                            }
+
                         }
+
                     }
                 }
             }
@@ -127,4 +139,9 @@ public class Player : MonoBehaviour
             piece.IsAttacked = false;
         }
 	}
+
+    public void OnActionFinished()
+    { 
+        FindObjectOfType<Game>().CheckForGameOver();
+    }
 }
