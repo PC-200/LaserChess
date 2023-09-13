@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.45138717, g: 0.5009147, b: 0.572515, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1387,6 +1387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: PlayerAI
+  IsAiPlayer: 0
 --- !u!1001 &594700171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1694,7 +1695,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1746,13 +1747,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.93235505, y: -0.06764156, z: 0.24982375, w: 0.2524418}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 149.7, y: -30, z: 0}
 --- !u!4 &710867855 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8202548550566097516, guid: d39e0e1bad254a040b136c6e8a7f5952, type: 3}
@@ -2626,13 +2627,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.5, y: 8, z: 3.5}
+  m_LocalRotation: {x: 0.52153087, y: 0, z: 0, w: 0.8532324}
+  m_LocalPosition: {x: 3.5, y: 5.97, z: -0.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 62.87, y: 0, z: 0}
 --- !u!1001 &985922930
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5283,6 +5284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: PlayerHuman
+  IsAiPlayer: 0
 --- !u!4 &1836509339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 500034827973568741, guid: 6eea65ceb6a12824ebdbe610abc6993d, type: 3}
