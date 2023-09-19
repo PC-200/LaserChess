@@ -29,6 +29,8 @@ public class Piece : MonoBehaviour
     public GameObject Projectile;
     public Transform ShootPos;
     public string Name;
+    private int numProjectiles;
+    public int AiMovePriority;
     
     public Vector2Int Position => transform.position.ToV2I();
 
@@ -73,7 +75,13 @@ public class Piece : MonoBehaviour
     public void ShootAt(Piece piece)
     {
         var projectile = Instantiate(Projectile).GetComponent<Projectile>();
-        projectile.MoveTo(ShootPos.position, piece.ShootPos.position, ()=> AttackPiece(piece));
+        ++numProjectiles;
+        projectile.MoveTo(ShootPos.position, piece.ShootPos.position, () =>
+        {
+            AttackPiece(piece);
+            --numProjectiles;
+        });
+    
     }
 
     public void Update()
@@ -89,6 +97,12 @@ public class Piece : MonoBehaviour
                 Player.OnActionFinished();
             }
         }
+    }
+
+    public bool IsBusy()
+    {
+        return moving || numProjectiles > 0;
+
     }
 }
 

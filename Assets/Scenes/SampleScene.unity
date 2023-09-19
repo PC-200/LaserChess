@@ -1387,7 +1387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: PlayerAI
-  IsAiPlayer: 0
+  IsAiPlayer: 1
+  AiPieces: []
 --- !u!1001 &594700171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5285,6 +5286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: PlayerHuman
   IsAiPlayer: 0
+  AiPieces: []
 --- !u!4 &1836509339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 500034827973568741, guid: 6eea65ceb6a12824ebdbe610abc6993d, type: 3}

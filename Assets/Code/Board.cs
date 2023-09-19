@@ -17,7 +17,6 @@ public class Board : MonoBehaviour
     {
         var tiles = GetComponentsInChildren<Tile>();
         Tiles = tiles.ToList();
-        //We want to create a list with all onboard pieces. The only way that works is to add them manualy. :)
         UpdatePiecesList();
     }
 

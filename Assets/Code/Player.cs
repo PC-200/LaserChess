@@ -13,8 +13,7 @@ public class Player : MonoBehaviour
     private Piece currentPiece;
     private Board board;
     public bool IsAiPlayer;
-    
-
+    public List<Piece> AiPieces = new List<Piece>();    
 
     void Awake()
     {
@@ -26,7 +25,71 @@ public class Player : MonoBehaviour
         board = FindObjectOfType<Board>();
     }
 
+    public void AiPlayerUpdate()
+    {
+        Piece piece = AiPieces[0];
+        if (piece.IsBusy())
+        {
+            return;
+        }
+        AiBehaviour behaviour = piece.GetComponent<AiBehaviour>();
+        if (behaviour == null) 
+        { 
+            piece.IsMoved= true;
+            piece.IsAttacked = true;
+            return;
+        }
+        if (!piece.IsMoved)
+        {
+            Tile tile = behaviour.GetMove(piece);
+            if (tile != null)
+            {
+                piece.MoveTo(tile.Position);
+            }
+            else
+            {
+                piece.IsMoved = true;
+            }
+            return;
+        }
+        if (!piece.IsAttacked)
+        {
+            List<Piece> attackPieces = behaviour.GetPiecesToAttack(piece);
+            attackPieces = attackPieces.Where(x => x.Player != this).ToList();
+            if (attackPieces.Count > 0) 
+            {    
+                foreach (var p in attackPieces)
+                {
+                    piece.ShootAt(p);
+                }
+
+            }
+            else
+            {
+                piece.IsAttacked = true;
+            }
+            return;
+        }
+        AiPieces.RemoveAt(0);
+        if (AiPieces.Count == 0)
+        {
+            FindObjectOfType<Game>().NextPlayer();
+        }
+    }
+
     public void GameUpdate()
+    {
+        if (IsAiPlayer) 
+        {
+            AiPlayerUpdate();
+        }
+        else
+        {
+            HumanPlayerUpdate();
+        }
+    }
+
+    public void HumanPlayerUpdate()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
@@ -137,6 +200,12 @@ public class Player : MonoBehaviour
         { 
             piece.IsMoved = false;
             piece.IsAttacked = false;
+        }
+        if (IsAiPlayer)
+        {
+            AiPieces.Clear();
+            AiPieces.AddRange(board.Pieces.Where(p=> p.Player == this));
+            AiPieces.Sort((a, b) => a.AiMovePriority - b.AiMovePriority);
         }
 	}
 
