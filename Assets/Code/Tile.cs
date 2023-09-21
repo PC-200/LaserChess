@@ -25,4 +25,8 @@ public class Tile : MonoBehaviour
         AttackMarkerObj.SetActive(enable);
     }
 
+    public override string ToString()
+    {
+        return Position.ToString();
+    }
 }

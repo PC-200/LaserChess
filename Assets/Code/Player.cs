@@ -55,9 +55,10 @@ public class Player : MonoBehaviour
         if (!piece.IsAttacked)
         {
             List<Piece> attackPieces = behaviour.GetPiecesToAttack(piece);
-            attackPieces = attackPieces.Where(x => x.Player != this).ToList();
-            if (attackPieces.Count > 0) 
-            {    
+           
+            if (attackPieces != null) 
+            {
+                attackPieces = attackPieces.Where(x => x.Player != this).ToList();
                 foreach (var p in attackPieces)
                 {
                     piece.ShootAt(p);

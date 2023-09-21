@@ -24,7 +24,6 @@ public class DroneBehaviour : MonoBehaviour, AiBehaviour
         List<Piece> pieces = board.GetAttackPieces(piece.Position, piece.Attack);
         if (pieces.Count == 0) { return null; }
         return new List<Piece>() { pieces[0] };
-        
     }
 }
 

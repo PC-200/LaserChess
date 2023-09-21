@@ -104,5 +104,10 @@ public class Piece : MonoBehaviour
         return moving || numProjectiles > 0;
 
     }
+
+    public void Teleport(Vector2Int pos)
+    {
+        transform.position = new Vector3(pos.x, 0, pos.y);
+    }
 }
 
