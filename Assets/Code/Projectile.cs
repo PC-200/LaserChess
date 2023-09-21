@@ -27,9 +27,9 @@ public class Projectile : MonoBehaviour
 
         if (velocity.magnitude > dist.magnitude)
         { 
-            transform .position = target;
+            transform.position = target;
             onHit();
-            Destroy(gameObject, 1);
+            Destroy(gameObject, 0.1f);
         }
         else
         {

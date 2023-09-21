@@ -31,7 +31,14 @@ public class Game : MonoBehaviour
         Player AiPlayer = Players[1];
 
         int commandUnits = board.Pieces.Count(p=>p.Player == AiPlayer && p.Name == "CommandUnit");
+        int dreadnought = board.Pieces.Count(p => p.Player == AiPlayer && p.Name == "dreadnought");
+        int drone = board.Pieces.Count(p => p.Player == AiPlayer && p.Name == "Drone");
         if (commandUnits == 0)
+        {
+            PlayerWon(humanPlayer);
+            return;
+        }
+        if (dreadnought == 0 && drone == 0)
         {
             PlayerWon(humanPlayer);
             return;

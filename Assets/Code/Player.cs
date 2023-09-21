@@ -27,6 +27,11 @@ public class Player : MonoBehaviour
 
     public void AiPlayerUpdate()
     {
+        if (AiPieces.Count == 0)
+        {
+            FindObjectOfType<Game>().NextPlayer();
+            return;
+        }
         Piece piece = AiPieces[0];
         if (piece.IsBusy())
         {
@@ -69,13 +74,10 @@ public class Player : MonoBehaviour
             {
                 piece.IsAttacked = true;
             }
+            AiPieces.RemoveAt(0);
             return;
         }
-        AiPieces.RemoveAt(0);
-        if (AiPieces.Count == 0)
-        {
-            FindObjectOfType<Game>().NextPlayer();
-        }
+
     }
 
     public void GameUpdate()
